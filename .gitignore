@@ -1,0 +1,37 @@
+# Dependencies
+node_modules/
+.npm
+.npm_cache
+.npm-cache/
+frontend/.npm-cache/
+
+# Next.js
+.next/
+out/
+build/
+
+# Rust/Soroban
+target/
+.soroban/
+Cargo.lock
+
+# Environment
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.wasm
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Vercel
+.vercel
