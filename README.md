@@ -87,8 +87,54 @@ graph TD
 BerrySwap maintains high standards for protocol reliability. Our test suite covers core smart contract logic, focusing on state transitions, authorization, and AMM invariants.
 
 ### Smart Contract Test Suite
-| Token | Verified Logic | Test Cases | Status |
+
+| Contract | Verified Logic | Test Cases | Status |
 |----------|----------------|------------|:---:|
-| **Token** | SEP-41 Compliance | test_token_lifecycle, test_transfer_insufficient_balance | ✅ |
-| **Pool** | AMM Invariants | test_liquidity_pool_lifecycle | ✅ |
-| **Router** | Atomic Swaps | test_router_swap, test_router_slippage_protection | ✅ |
+| **Token** | SEP-41 Compliance | `test_token_lifecycle`, `test_transfer_insufficient_balance` | ✅ |
+| **Pool** | AMM Invariants | `test_liquidity_pool_lifecycle` | ✅ |
+| **Router** | Atomic Swaps | `test_router_swap`, `test_router_slippage_protection` | ✅ |
+
+### 🛠️ Testing Guidelines
+
+To ensure the integrity of the protocol, follow these guidelines when running or adding tests:
+
+#### 1. Environment Preparation
+The smart contract tests utilize the Soroban Rust SDK's test infrastructure. Ensure you have the `wasm32-unknown-unknown` target installed.
+```bash
+rustup target add wasm32-unknown-unknown
+```
+
+#### 2. Building Dependencies
+Some integration tests in the Router contract depend on compiled WASM binaries of the Token and Pool contracts. Always build before testing:
+```bash
+stellar contract build
+```
+
+#### 3. Running the Suite
+You can run the entire suite or target specific contracts:
+```bash
+# Run all tests
+cargo test
+
+# Target a specific contract (e.g., Token)
+cargo test -p token
+```
+
+#### 4. Observing Protocol Logs
+To see detailed contract logs (from `log!` macros) during test execution, use the `--nocapture` flag:
+```bash
+cargo test -- --nocapture
+```
+
+### 🤖 CI/CD Integration
+Our GitHub Actions pipeline (`ci.yml`) automatically executes this test suite on every pull request to ensure that no regressions are introduced to the core swap logic.
+
+## 📄 License
+
+BerrySwap is open-source software licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
+
+---
+
+<div align="center">
+  Built with ❤️ by the BerrySwap Team.
+</div>
