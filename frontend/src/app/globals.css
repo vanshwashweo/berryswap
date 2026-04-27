@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Pacifico&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-surface: #FFF9F2;
+  --surface-plate: #FFECF1;
+  --surface-recessed: #FFF0F3;
+  --border-primary: #FFC4D6;
+  --border-highlight: #FFDDE4;
+  --text-primary: #590D22;
+  --text-secondary: #A44A5E;
+}
+
+@layer base {
+  body {
+    color: var(--text-primary);
+    background: var(--bg-surface);
+    font-family: 'Quicksand', sans-serif;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Quicksand', sans-serif;
+    @apply font-bold text-strawberry-red tracking-normal;
+  }
+}
+
+@layer components {
+  /* The Berry Card - soft and dreamy */
+  .plate {
+    @apply bg-soft-pink border-2 border-berry-border relative rounded-4xl shadow-berry transition-all duration-300;
+  }
+
+  .glass { 
+    @apply plate;
+  }
+  
+  .plate-hover {
+    @apply hover:scale-[1.02] hover:shadow-berry-hover transition-all duration-300 cursor-pointer;
+  }
+
+  /* Recessed area - for inputs, data cards */
+  .recessed {
+    @apply bg-strawberry-cream border-2 border-berry-border rounded-2xl;
+  }
+
+  /* Strawberry Button */
+  .btn-industrial {
+    @apply bg-strawberry-red text-white px-6 py-3 font-bold rounded-2xl active:scale-95 transition-all duration-200 border-b-4 border-deep-berry hover:brightness-110 flex items-center justify-center gap-2;
+  }
+
+  .btn-industrial::after {
+    content: '🎀';
+    @apply text-lg;
+  }
+
+  .btn-industrial:active {
+    @apply border-b-0 translate-y-[4px];
+  }
+
+  .text-gradient {
+    @apply text-strawberry-red font-bold;
+  }
+}
+
+/* Strawberry & Flower Pattern */
+.grid-background {
+  background-color: var(--bg-surface);
+  background-image: 
+    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ff4d6d' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4v-4H4v4H0v2h4v4h2v-4h4v-2H6zm30 0v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"),
+    radial-gradient(circle at 2px 2px, rgba(255, 77, 109, 0.05) 1px, transparent 0);
+  background-size: 60px 60px, 20px 20px;
+  background-attachment: fixed;
+}
+
+.mono-label {
+  @apply text-strawberry-red text-xs font-bold uppercase tracking-wider;
+}
+
+/* Soft Bouncy transitions */
+.animate-snap {
+  transition: all 400ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
